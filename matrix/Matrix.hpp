@@ -26,6 +26,9 @@ namespace matrix
 template <typename Type, size_t M>
 class Vector;
 
+template <typename Type, size_t M>
+class SquareMatrix;
+
 template<typename Type, size_t  M, size_t N>
 class Matrix
 {
@@ -505,6 +508,11 @@ bool isEqual(const Matrix<Type, M, N> &x,
         printf("not equal\nx:\n%s\ny:\n%s\n", buf_x, buf_y);
     }
     return x == y;
+}
+
+template<typename Type, size_t M>
+inline Matrix<Type, M, M> inversed(Matrix<Type, M, M> const &m) {
+	return SquareMatrix<Type, M>(m).I(); 
 }
 
 #if defined(SUPPORT_STDIOSTREAM)
