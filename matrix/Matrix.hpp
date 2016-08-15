@@ -39,6 +39,7 @@ public:
     Matrix() :
         _data()
     {
+		memset(_data, 0, sizeof(_data)); 
     }
 
     Matrix(const Type *data_) :
