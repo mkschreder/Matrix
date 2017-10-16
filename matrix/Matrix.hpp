@@ -12,6 +12,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cstdlib>
 #include <math.h>
 #if defined(SUPPORT_STDIOSTREAM)
 #include <iostream>
@@ -42,10 +43,20 @@ public:
     Matrix() :
         _data()
     {
-        memset(_data, 0, sizeof(_data));
+		for(size_t i = 0; i < M; i++){
+			for(size_t j = 0; j < N; j++){
+				_data[i][j] = 0;
+			}
+		}
     }
 
     Matrix(const Type *data_) :
+        _data()
+    {
+        memcpy(_data, data_, sizeof(_data));
+    }
+
+	Matrix(const Type (&data_)[M*N]) :
         _data()
     {
         memcpy(_data, data_, sizeof(_data));
@@ -57,6 +68,11 @@ public:
         memcpy(_data, data_, sizeof(_data));
     }
 
+	Matrix(const Type (&data_)[M][N]) :
+        _data()
+    {
+        memcpy(_data, data_, sizeof(_data));
+    }
 
     Matrix(const Matrix &other) :
         _data()
@@ -288,7 +304,7 @@ public:
     /**
      * Misc. Functions
      */
-
+	/*
     void write_string(char * buf, size_t n) const
     {
         buf[0] = '\0'; // make an empty string to begin with (we need the '\0' for strlen to work)
@@ -307,6 +323,7 @@ public:
         write_string(buf, 200);
         printf("%s\n", buf);
     }
+	*/
 
     // alias
     inline Matrix<Type, N, M> transposed() const {
