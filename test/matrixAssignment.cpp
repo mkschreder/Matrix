@@ -112,18 +112,27 @@ int main()
     Matrix<float, 2, 2> m8(m8_array);
     TEST(isEqual(m6, m8));
 
+	// square roots
+	{
+		SquareMatrix<float, 4> m; m.setIdentity();
+		m *= 45; //setAll((float)(500 - rand() % 1000));
+		Matrix<float, 4, 4>  prod = m * m;
+		prod.print();
+		SquareMatrix<float, 4> s = sqrt(prod);
+		TEST(isEqual(m, s));
+	}
 #define is_equal(a, b) (fabs(a - b) < FLT_EPSILON)
     // limits
     {
-        Matrix<float, 2, 2> mm((const float[2][2]) {
+        Matrix<float, 2, 2> mm((float[2][2]) {
             { 2, -2 },
             { -3, 0.25f }
         });
-        Matrix<float, 2, 2> mn((const float[2][2]) {
+        Matrix<float, 2, 2> mn((float[2][2]) {
             { -0.5, -0.5 },
             { -0.5, -0.5 }
         });
-        Matrix<float, 2, 2> mx((const float[2][2]) {
+        Matrix<float, 2, 2> mx((float[2][2]) {
             { 0.5, 0.5 },
             { 0.5, 0.5 }
         });

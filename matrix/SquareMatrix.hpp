@@ -78,7 +78,6 @@ public:
         }
         return res;
     }
-
 };
 
 typedef SquareMatrix<float, 3> SquareMatrix3f;
@@ -113,6 +112,24 @@ SquareMatrix<Type, M> expm(const Matrix<Type, M, M> & A, size_t order=5)
     }
 
     return res;
+}
+
+template<typename Type, size_t M>
+SquareMatrix<Type, M> sqrt(const SquareMatrix<Type, M> &m, unsigned int quality = 4){
+	static const int n_iter = 4;
+	SquareMatrix<Type, M> Y = m;
+	SquareMatrix<Type, M> Z; Z.setIdentity();
+	for(int c = 0; c < quality; c++){
+		SquareMatrix<Type, M> Yn = Type(0.5) * (Y + inversed(Z));
+		SquareMatrix<Type, M> Zn = Type(0.5) * (Z + inversed(Y));
+		Y = Yn;
+		Z = Zn;
+	}
+}
+
+template<typename Type, size_t M, size_t N>
+SquareMatrix<Type, M> sqrt(const Matrix<Type, M, N> &m, unsigned int quality = 4){
+	return sqrt(SquareMatrix<Type, M>(m), quality);
 }
 
 /**

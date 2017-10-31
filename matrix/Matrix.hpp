@@ -38,7 +38,7 @@ public:
 
     Type _data[M][N];
 
-    virtual ~Matrix() {};
+    //virtual ~Matrix() {};
 
     Matrix() :
         _data()
@@ -304,7 +304,7 @@ public:
     /**
      * Misc. Functions
      */
-	/*
+#ifdef __linux__
     void write_string(char * buf, size_t n) const
     {
         buf[0] = '\0'; // make an empty string to begin with (we need the '\0' for strlen to work)
@@ -323,7 +323,7 @@ public:
         write_string(buf, 200);
         printf("%s\n", buf);
     }
-	*/
+#endif
 
     // alias
     inline Matrix<Type, N, M> transposed() const {

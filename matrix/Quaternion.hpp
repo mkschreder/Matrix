@@ -107,7 +107,7 @@ public:
         Vector<Type, 4>()
     {
         Quaternion &q = *this;
-        q(0) = Type(0.5) * Type(sqrt(Type(1) + dcm(0, 0) +
+        q(0) = Type(0.5) * Type(::sqrt(Type(1) + dcm(0, 0) +
                                      dcm(1, 1) + dcm(2, 2)));
         q(1) = Type((dcm(2, 1) - dcm(1, 2)) /
                     (Type(4) * q(0)));
@@ -383,7 +383,7 @@ public:
     Vector<Type, 3> to_axis_angle()
     {
         Quaternion &q = *this;
-        Type axis_magnitude = Type(sqrt(q(1) * q(1) + q(2) * q(2) + q(3) * q(3)));
+        Type axis_magnitude = Type(::sqrt(q(1) * q(1) + q(2) * q(2) + q(3) * q(3)));
         Vector<Type, 3> vec;
         vec(0) = q(1);
         vec(1) = q(2);

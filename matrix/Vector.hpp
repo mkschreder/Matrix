@@ -67,7 +67,7 @@ public:
 
     Type norm() const {
         const Vector &a(*this);
-        return Type(sqrt(a.dot(a)));
+        return Type(::sqrt(a.dot(a)));
     }
 
     inline void normalize() {
